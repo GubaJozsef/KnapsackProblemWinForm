@@ -10,6 +10,8 @@ public partial class Form1 : Form
     private Button btnAdd, btnSolve;
     private ListBox lstItems;
     private Label lblCapacity, lblResult;
+    private ComboBox cmbAlgorithm;
+
 
     private List<Item> items = new List<Item>();
     public class Item
@@ -99,6 +101,16 @@ public partial class Form1 : Form
         lblResult.Text = "";
         this.Controls.Add(lblResult);
 
+        // Algoritmus kiválasztása legördülő lista
+        cmbAlgorithm = new ComboBox();
+        cmbAlgorithm.Location = new System.Drawing.Point(210, 310); // A gomb mellett legyen
+        cmbAlgorithm.Width = 180;
+        cmbAlgorithm.Items.Add("Egyszerű sorrendi"); // 0. index
+        cmbAlgorithm.Items.Add("Érték szerinti csökkenő sorrend"); // 1. index
+        cmbAlgorithm.Items.Add("Érték/súly arány szerinti csökkenő sorrend"); // 2. index
+        cmbAlgorithm.SelectedIndex = 0; // Alapból az első legyen kiválasztva
+        this.Controls.Add(cmbAlgorithm);
+
 
 
         var exampleItems = new List<Item>
@@ -140,7 +152,7 @@ public partial class Form1 : Form
 
     private void BtnSolve_Click(object sender, EventArgs e)
     {
-        // Kapacitás beolvasása
+        // 1. Kapacitás beolvasása
         if (!int.TryParse(txtCapacity.Text, out int capacity))
         {
             MessageBox.Show("Adj meg egy érvényes számot a kapacitásnak!");
@@ -151,8 +163,23 @@ public partial class Form1 : Form
         int totalValue = 0;
         List<Item> selectedItems = new List<Item>();
         
-        // Egyszerű algoritmus: sorban hozzáadja a tárgyakat, amíg belefér
-        foreach (var item in items)
+        // 2. Másolatot készítünk a tárgyak listájáról, hogy tudjuk rendezni
+        List<Item> itemsToProcess = new List<Item>(items);
+
+        // 3. Megnézzük, melyik algoritmust választotta a felhasználó
+        if (cmbAlgorithm.SelectedIndex == 1)
+        {
+            // Érték szerinti csökkenő sorrend
+            itemsToProcess.Sort((a, b) => b.Value.CompareTo(a.Value));
+        }
+        else if (cmbAlgorithm.SelectedIndex == 2)
+        {
+            // Érték/súly arány szerinti csökkenő sorrend
+            itemsToProcess.Sort((a, b) => ((double)b.Value / b.Weight).CompareTo((double)a.Value / a.Weight));
+        }
+        // Ha az első van kiválasztva (0. index), akkor nem kell rendezni, marad az eredeti sorrend
+        // 4. Végigmegyünk a tárgyakon, és amíg belefér, hozzáadjuk őket a hátizsákhoz
+        foreach (var item in itemsToProcess)
         {
             if (totalWeight + item.Weight <= capacity)
             {
@@ -161,7 +188,8 @@ public partial class Form1 : Form
                 totalValue += item.Value;
             }
         }
-        // Eredmény kiírása
+
+        // 5. Eredmény kiírása
         if (selectedItems.Count == 0)
         {
             lblResult.Text = "Nem lehet tárgyat betenni a hátizsákba!";
@@ -172,6 +200,8 @@ public partial class Form1 : Form
                 string.Join(", ", selectedItems.ConvertAll(i => i.Name)) +
                 $"  \nÖsszsúly: {totalWeight}kg  \nÖsszérték: {totalValue}$";
         }
+
+
 
     }
 }

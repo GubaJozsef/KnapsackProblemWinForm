@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("KnapsackApp")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+6822cc58ae5170e50fea8a326fe353fc0113d6f9")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+fe787a20718182e8484bcb8eafa81a92d2755a31")]
 [assembly: System.Reflection.AssemblyProductAttribute("KnapsackApp")]
 [assembly: System.Reflection.AssemblyTitleAttribute("KnapsackApp")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
