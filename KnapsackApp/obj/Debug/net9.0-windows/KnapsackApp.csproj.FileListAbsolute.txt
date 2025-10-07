@@ -1,0 +1,15 @@
+D:\Egyetem\SZOP\Vizsgabeadando\KnapsackProblemWinForm\KnapsackApp\bin\Debug\net9.0-windows\KnapsackApp.exe
+D:\Egyetem\SZOP\Vizsgabeadando\KnapsackProblemWinForm\KnapsackApp\bin\Debug\net9.0-windows\KnapsackApp.deps.json
+D:\Egyetem\SZOP\Vizsgabeadando\KnapsackProblemWinForm\KnapsackApp\bin\Debug\net9.0-windows\KnapsackApp.runtimeconfig.json
+D:\Egyetem\SZOP\Vizsgabeadando\KnapsackProblemWinForm\KnapsackApp\bin\Debug\net9.0-windows\KnapsackApp.dll
+D:\Egyetem\SZOP\Vizsgabeadando\KnapsackProblemWinForm\KnapsackApp\bin\Debug\net9.0-windows\KnapsackApp.pdb
+D:\Egyetem\SZOP\Vizsgabeadando\KnapsackProblemWinForm\KnapsackApp\obj\Debug\net9.0-windows\KnapsackApp.GeneratedMSBuildEditorConfig.editorconfig
+D:\Egyetem\SZOP\Vizsgabeadando\KnapsackProblemWinForm\KnapsackApp\obj\Debug\net9.0-windows\KnapsackApp.AssemblyInfoInputs.cache
+D:\Egyetem\SZOP\Vizsgabeadando\KnapsackProblemWinForm\KnapsackApp\obj\Debug\net9.0-windows\KnapsackApp.AssemblyInfo.cs
+D:\Egyetem\SZOP\Vizsgabeadando\KnapsackProblemWinForm\KnapsackApp\obj\Debug\net9.0-windows\KnapsackApp.csproj.CoreCompileInputs.cache
+D:\Egyetem\SZOP\Vizsgabeadando\KnapsackProblemWinForm\KnapsackApp\obj\Debug\net9.0-windows\KnapsackApp.sourcelink.json
+D:\Egyetem\SZOP\Vizsgabeadando\KnapsackProblemWinForm\KnapsackApp\obj\Debug\net9.0-windows\KnapsackApp.dll
+D:\Egyetem\SZOP\Vizsgabeadando\KnapsackProblemWinForm\KnapsackApp\obj\Debug\net9.0-windows\refint\KnapsackApp.dll
+D:\Egyetem\SZOP\Vizsgabeadando\KnapsackProblemWinForm\KnapsackApp\obj\Debug\net9.0-windows\KnapsackApp.pdb
+D:\Egyetem\SZOP\Vizsgabeadando\KnapsackProblemWinForm\KnapsackApp\obj\Debug\net9.0-windows\KnapsackApp.genruntimeconfig.cache
+D:\Egyetem\SZOP\Vizsgabeadando\KnapsackProblemWinForm\KnapsackApp\obj\Debug\net9.0-windows\ref\KnapsackApp.dll
