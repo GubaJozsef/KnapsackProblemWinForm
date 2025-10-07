@@ -7,9 +7,9 @@ using System.Collections.Generic;
 public partial class Form1 : Form
 {
     private TextBox txtName, txtWeight, txtValue, txtCapacity;
-    private Button btnAdd;
+    private Button btnAdd, btnSolve;
     private ListBox lstItems;
-    private Label lblCapacity;
+    private Label lblCapacity, lblResult;
 
     private List<Item> items = new List<Item>();
     public class Item
@@ -22,31 +22,7 @@ public partial class Form1 : Form
             return Name + " (Súly: " + Weight + "kg, Érték: " + Value + "$)";
         }
     }
-    private void BtnAdd_Click(object sender, EventArgs e)
-    {
-        // Ellenőrizzük, hogy minden mező ki van-e töltve, és a számok helyesek-e
-        if (string.IsNullOrWhiteSpace(txtName.Text) || !int.TryParse(txtWeight.Text, out int weight) || !int.TryParse(txtValue.Text, out int value))
-        {
-            MessageBox.Show("Adj meg minden adatot helyesen!");
-            return;
-        }
-        // Új tárgy létrehozása
-        Item item = new Item();
-        item.Name = txtName.Text;
-        item.Weight = weight;
-        item.Value = value;
 
-        // Mezők ürítése
-        txtName.Text = "";
-        txtWeight.Text = "";
-        txtValue.Text = "";
-
-        items.Add(item);
-        lstItems.Items.Add(item);
-
-
-
-    }
 
     public Form1()
     {
@@ -103,22 +79,99 @@ public partial class Form1 : Form
         txtCapacity = new TextBox();
         txtCapacity.Location = new System.Drawing.Point(lblCapacity.Location.X + lblCapacity.Width + 10, 260);
         txtCapacity.Width = 50;
-        txtCapacity.Text = "10"; // Alapértelmezett érték
+        txtCapacity.Text = "10";
         this.Controls.Add(txtCapacity);
 
+        // Megoldás keresése gomb
+        btnSolve = new Button();
+        btnSolve.Location = new System.Drawing.Point(10, 310);
+        btnSolve.Width = 180;
+        btnSolve.Height = 30;
+        btnSolve.Text = "Megoldás keresése";
+        btnSolve.Click += BtnSolve_Click;
+        this.Controls.Add(btnSolve);
+
+        // Eredmény felirat
+        lblResult = new Label();
+        lblResult.Location = new System.Drawing.Point(10, 350);
+        lblResult.Width = 400;
+        lblResult.Height = 90;
+        lblResult.Text = "";
+        this.Controls.Add(lblResult);
 
 
-            
+
         var exampleItems = new List<Item>
         {
             new Item { Name = "Laptop", Weight = 5, Value = 1000 },
             new Item { Name = "Könyv", Weight = 4, Value = 30 },
             new Item { Name = "Labda", Weight = 2, Value = 10 }
         };
-            foreach (var item in exampleItems)
+        foreach (var item in exampleItems)
         {
             items.Add(item);
             lstItems.Items.Add(item);
         }
+    }
+
+
+    private void BtnAdd_Click(object sender, EventArgs e)
+    {
+        // Ellenőrizzük, hogy minden mező ki van-e töltve, és a számok helyesek-e
+        if (string.IsNullOrWhiteSpace(txtName.Text) || !int.TryParse(txtWeight.Text, out int weight) || !int.TryParse(txtValue.Text, out int value))
+        {
+            MessageBox.Show("Adj meg minden adatot helyesen!");
+            return;
+        }
+        // Új tárgy létrehozása
+        Item item = new Item();
+        item.Name = txtName.Text;
+        item.Weight = weight;
+        item.Value = value;
+
+        // Mezők ürítése
+        txtName.Text = "";
+        txtWeight.Text = "";
+        txtValue.Text = "";
+
+        items.Add(item);
+        lstItems.Items.Add(item);
+    }
+
+    private void BtnSolve_Click(object sender, EventArgs e)
+    {
+        // Kapacitás beolvasása
+        if (!int.TryParse(txtCapacity.Text, out int capacity))
+        {
+            MessageBox.Show("Adj meg egy érvényes számot a kapacitásnak!");
+            return;
+        }
+
+        int totalWeight = 0;
+        int totalValue = 0;
+        List<Item> selectedItems = new List<Item>();
+        
+        // Egyszerű algoritmus: sorban hozzáadja a tárgyakat, amíg belefér
+        foreach (var item in items)
+        {
+            if (totalWeight + item.Weight <= capacity)
+            {
+                selectedItems.Add(item);
+                totalWeight += item.Weight;
+                totalValue += item.Value;
+            }
+        }
+        // Eredmény kiírása
+        if (selectedItems.Count == 0)
+        {
+            lblResult.Text = "Nem lehet tárgyat betenni a hátizsákba!";
+        }
+        else
+        {
+            lblResult.Text = "Kiválasztott tárgyak: " +
+                string.Join(", ", selectedItems.ConvertAll(i => i.Name)) +
+                $"  \nÖsszsúly: {totalWeight}kg  \nÖsszérték: {totalValue}$";
+        }
+
     }
 }
