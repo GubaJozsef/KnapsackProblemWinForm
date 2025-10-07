@@ -6,9 +6,10 @@ using System.Collections.Generic;
 
 public partial class Form1 : Form
 {
-    private TextBox txtName, txtWeight, txtValue;
+    private TextBox txtName, txtWeight, txtValue, txtCapacity;
     private Button btnAdd;
     private ListBox lstItems;
+    private Label lblCapacity;
 
     private List<Item> items = new List<Item>();
     public class Item
@@ -89,6 +90,24 @@ public partial class Form1 : Form
         lstItems.Width = 280;
         lstItems.Height = 200;
         this.Controls.Add(lstItems);
+
+        //Kapacitás felirat
+        lblCapacity = new Label();
+        lblCapacity.Location = new System.Drawing.Point(10, 260);
+        lblCapacity.Width = 200;
+        lblCapacity.Height = 30;
+        lblCapacity.Text = "Hátizsák kapacitása (kg):";
+        this.Controls.Add(lblCapacity);
+
+        //Kapacitás beviteli mező
+        txtCapacity = new TextBox();
+        txtCapacity.Location = new System.Drawing.Point(lblCapacity.Location.X + lblCapacity.Width + 10, 260);
+        txtCapacity.Width = 50;
+        txtCapacity.Text = "10"; // Alapértelmezett érték
+        this.Controls.Add(txtCapacity);
+
+
+
             
         var exampleItems = new List<Item>
         {
